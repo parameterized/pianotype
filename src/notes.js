@@ -1,8 +1,100 @@
 
 var notes = {};
 
+notes.synth = false;
+
+notes.preloadAudio = function() {
+  sfx.k1 = {
+    'C2': loadSound('sfx/k1/C2.wav'),
+    'C#2': loadSound('sfx/k1/Cs2.wav'),
+    'D2': loadSound('sfx/k1/D2.wav'),
+    'D#2': loadSound('sfx/k1/Ds2.wav'),
+    'E2': loadSound('sfx/k1/E2.wav'),
+    'F2': loadSound('sfx/k1/F2.wav'),
+    'F#2': loadSound('sfx/k1/Fs2.wav'),
+    'G2': loadSound('sfx/k1/G2.wav'),
+    'G#2': loadSound('sfx/k1/Gs2.wav'),
+    'A2': loadSound('sfx/k1/A2.wav'),
+    'A#2': loadSound('sfx/k1/As2.wav'),
+    'B2': loadSound('sfx/k1/B2.wav'),
+    'C3': loadSound('sfx/k1/C3.wav'),
+    'C#3': loadSound('sfx/k1/Cs3.wav'),
+    'D3': loadSound('sfx/k1/D3.wav'),
+    'D#3': loadSound('sfx/k1/Ds3.wav'),
+    'E3': loadSound('sfx/k1/E3.wav'),
+    'F3': loadSound('sfx/k1/F3.wav'),
+    'F#3': loadSound('sfx/k1/Fs3.wav'),
+    'G3': loadSound('sfx/k1/G3.wav'),
+    'G#3': loadSound('sfx/k1/Gs3.wav'),
+    'A3': loadSound('sfx/k1/A3.wav'),
+    'A#3': loadSound('sfx/k1/As3.wav'),
+    'B3': loadSound('sfx/k1/B3.wav'),
+    'C4': loadSound('sfx/k1/C4.wav'),
+    'C#4': loadSound('sfx/k1/Cs4.wav'),
+    'D4': loadSound('sfx/k1/D4.wav'),
+    'D#4': loadSound('sfx/k1/Ds4.wav'),
+    'E4': loadSound('sfx/k1/E4.wav'),
+    'F4': loadSound('sfx/k1/F4.wav'),
+    'F#4': loadSound('sfx/k1/Fs4.wav'),
+    'G4': loadSound('sfx/k1/G4.wav'),
+    'G#4': loadSound('sfx/k1/Gs4.wav'),
+    'A4': loadSound('sfx/k1/A4.wav'),
+    'A#4': loadSound('sfx/k1/As4.wav'),
+    'B4': loadSound('sfx/k1/B4.wav'),
+    'C5': loadSound('sfx/k1/C5.wav'),
+    'C#5': loadSound('sfx/k1/Cs5.wav'),
+    'D5': loadSound('sfx/k1/D5.wav'),
+    'D#5': loadSound('sfx/k1/Ds5.wav'),
+    'E5': loadSound('sfx/k1/E5.wav'),
+    'F5': loadSound('sfx/k1/F5.wav'),
+    'F#5': loadSound('sfx/k1/Fs5.wav'),
+    'G5': loadSound('sfx/k1/G5.wav'),
+    'G#5': loadSound('sfx/k1/Gs5.wav'),
+    'A5': loadSound('sfx/k1/A5.wav'),
+    'A#5': loadSound('sfx/k1/As5.wav'),
+    'B5': loadSound('sfx/k1/B5.wav'),
+    'C6': loadSound('sfx/k1/C6.wav'),
+    'C#6': loadSound('sfx/k1/Cs6.wav'),
+    'D6': loadSound('sfx/k1/D6.wav'),
+    'D#6': loadSound('sfx/k1/Ds6.wav'),
+    'E6': loadSound('sfx/k1/E6.wav'),
+    'F6': loadSound('sfx/k1/F6.wav'),
+    'F#6': loadSound('sfx/k1/Fs6.wav'),
+    'G6': loadSound('sfx/k1/G6.wav'),
+    'G#6': loadSound('sfx/k1/Gs6.wav'),
+    'A6': loadSound('sfx/k1/A6.wav'),
+    'A#6': loadSound('sfx/k1/As6.wav'),
+    'B6': loadSound('sfx/k1/B6.wav'),
+    'C7': loadSound('sfx/k1/C7.wav')
+  };
+  sfx.k1['Db2'] = sfx.k1['C#2'];
+  sfx.k1['Eb2'] = sfx.k1['D#2'];
+  sfx.k1['Gb2'] = sfx.k1['F#2'];
+  sfx.k1['Ab2'] = sfx.k1['G#2'];
+  sfx.k1['Bb2'] = sfx.k1['A#2'];
+  sfx.k1['Db3'] = sfx.k1['C#3'];
+  sfx.k1['Eb3'] = sfx.k1['D#3'];
+  sfx.k1['Gb3'] = sfx.k1['F#3'];
+  sfx.k1['Ab3'] = sfx.k1['G#3'];
+  sfx.k1['Bb3'] = sfx.k1['A#3'];
+  sfx.k1['Db4'] = sfx.k1['C#4'];
+  sfx.k1['Eb4'] = sfx.k1['D#4'];
+  sfx.k1['Gb4'] = sfx.k1['F#4'];
+  sfx.k1['Ab4'] = sfx.k1['G#4'];
+  sfx.k1['Bb4'] = sfx.k1['A#4'];
+  sfx.k1['Db5'] = sfx.k1['C#5'];
+  sfx.k1['Eb5'] = sfx.k1['D#5'];
+  sfx.k1['Gb5'] = sfx.k1['F#5'];
+  sfx.k1['Ab5'] = sfx.k1['G#5'];
+  sfx.k1['Bb5'] = sfx.k1['A#5'];
+  sfx.k1['Db6'] = sfx.k1['C#6'];
+  sfx.k1['Eb6'] = sfx.k1['D#6'];
+  sfx.k1['Gb6'] = sfx.k1['F#6'];
+  sfx.k1['Ab6'] = sfx.k1['G#6'];
+  sfx.k1['Bb6'] = sfx.k1['A#6'];
+}
+
 notes.loadAudio = function() {
-  masterVolume(0.2);
   notes.oscillators = [];
   notes.envelopes = [];
   for (let i=0; i < 6; i++) {
@@ -10,6 +102,7 @@ notes.loadAudio = function() {
     env = new p5.Env();
     env.setADSR(0.001, 0.2, 0.2, 0.5);
     env.setRange(1, 0);
+    env.mult(0.2);
     osc.amp(env);
     osc.start();
     notes.oscillators.push(osc);
@@ -32,14 +125,21 @@ notes.noteFreqs = {
 
 notes.play = function(noteList) {
   for (let i=0; i < noteList.length; i++) {
-    notes.oscillators[i].freq(notes.noteFreqs[noteList[i]]);
-    notes.envelopes[i].play(notes.oscillators[i], 0, 0.1);
+    let note = noteList[i];
+    if (notes.synth) {
+      notes.oscillators[i].freq(notes.noteFreqs[note]);
+      notes.envelopes[i].play(notes.oscillators[i], 0, 0.1);
+    } else {
+      if (sfx.k1[note]) {
+        sfx.k1[note].play();
+      }
+    }
   }
 }
 
 
-var notePolys = {
-  'C4': [
+var k1NotePolys = {
+  'C3': [
     {x: 140, y: 340},
     {x: 160, y: 340},
     {x: 160, y: 360},
@@ -47,13 +147,13 @@ var notePolys = {
     {x: 165, y: 380},
     {x: 140, y: 380}
   ],
-  'C#4': [
+  'C#3': [
     {x: 160, y: 340},
     {x: 170, y: 340},
     {x: 170, y: 360},
     {x: 160, y: 360}
   ],
-  'D4': [
+  'D3': [
     {x: 165, y: 360},
     {x: 170, y: 360},
     {x: 170, y: 340},
@@ -63,13 +163,13 @@ var notePolys = {
     {x: 185, y: 380},
     {x: 165, y: 380}
   ],
-  'D#4': [
+  'D#3': [
     {x: 180, y: 340},
     {x: 190, y: 340},
     {x: 190, y: 360},
     {x: 180, y: 360}
   ],
-  'E4': [
+  'E3': [
     {x: 185, y: 360},
     {x: 190, y: 360},
     {x: 190, y: 340},
@@ -77,7 +177,7 @@ var notePolys = {
     {x: 205, y: 380},
     {x: 185, y: 380}
   ],
-  'F4': [
+  'F3': [
     {x: 205, y: 340},
     {x: 220, y: 340},
     {x: 220, y: 360},
@@ -85,13 +185,13 @@ var notePolys = {
     {x: 225, y: 380},
     {x: 205, y: 380}
   ],
-  'F#4': [
+  'F#3': [
     {x: 220, y: 340},
     {x: 230, y: 340},
     {x: 230, y: 360},
     {x: 220, y: 360}
   ],
-  'G4': [
+  'G3': [
     {x: 225, y: 360},
     {x: 230, y: 360},
     {x: 230, y: 340},
@@ -101,13 +201,13 @@ var notePolys = {
     {x: 245, y: 380},
     {x: 225, y: 380}
   ],
-  'G#4': [
+  'G#3': [
     {x: 240, y: 340},
     {x: 250, y: 340},
     {x: 250, y: 360},
     {x: 240, y: 360}
   ],
-  'A4': [
+  'A3': [
     {x: 245, y: 360},
     {x: 250, y: 360},
     {x: 250, y: 340},
@@ -117,13 +217,13 @@ var notePolys = {
     {x: 265, y: 380},
     {x: 245, y: 380}
   ],
-  'A#4': [
+  'A#3': [
     {x: 260, y: 340},
     {x: 270, y: 340},
     {x: 270, y: 360},
     {x: 260, y: 360}
   ],
-  'B4': [
+  'B3': [
     {x: 265, y: 360},
     {x: 270, y: 360},
     {x: 270, y: 340},
@@ -131,7 +231,7 @@ var notePolys = {
     {x: 285, y: 380},
     {x: 265, y: 380}
   ],
-  'C5': [
+  'C4': [
     {x: 285, y: 340},
     {x: 300, y: 340},
     {x: 300, y: 360},
@@ -139,13 +239,13 @@ var notePolys = {
     {x: 305, y: 380},
     {x: 285, y: 380}
   ],
-  'C#5': [
+  'C#4': [
     {x: 300, y: 340},
     {x: 310, y: 340},
     {x: 310, y: 360},
     {x: 300, y: 360}
   ],
-  'D5': [
+  'D4': [
     {x: 305, y: 360},
     {x: 310, y: 360},
     {x: 310, y: 340},
@@ -155,13 +255,13 @@ var notePolys = {
     {x: 325, y: 380},
     {x: 305, y: 380}
   ],
-  'D#5': [
+  'D#4': [
     {x: 320, y: 340},
     {x: 330, y: 340},
     {x: 330, y: 360},
     {x: 320, y: 360}
   ],
-  'E5': [
+  'E4': [
     {x: 325, y: 360},
     {x: 330, y: 360},
     {x: 330, y: 340},
@@ -169,7 +269,7 @@ var notePolys = {
     {x: 345, y: 380},
     {x: 325, y: 380}
   ],
-  'F5': [
+  'F4': [
     {x: 345, y: 340},
     {x: 360, y: 340},
     {x: 360, y: 360},
@@ -177,13 +277,13 @@ var notePolys = {
     {x: 365, y: 380},
     {x: 345, y: 380}
   ],
-  'F#5': [
+  'F#4': [
     {x: 360, y: 340},
     {x: 370, y: 340},
     {x: 370, y: 360},
     {x: 360, y: 360}
   ],
-  'G5': [
+  'G4': [
     {x: 365, y: 360},
     {x: 370, y: 360},
     {x: 370, y: 340},
@@ -193,13 +293,13 @@ var notePolys = {
     {x: 385, y: 380},
     {x: 365, y: 380}
   ],
-  'G#5': [
+  'G#4': [
     {x: 380, y: 340},
     {x: 390, y: 340},
     {x: 390, y: 360},
     {x: 380, y: 360}
   ],
-  'A5': [
+  'A4': [
     {x: 385, y: 360},
     {x: 390, y: 360},
     {x: 390, y: 340},
@@ -209,13 +309,13 @@ var notePolys = {
     {x: 405, y: 380},
     {x: 385, y: 380}
   ],
-  'A#5': [
+  'A#4': [
     {x: 400, y: 340},
     {x: 410, y: 340},
     {x: 410, y: 360},
     {x: 400, y: 360}
   ],
-  'B5': [
+  'B4': [
     {x: 405, y: 360},
     {x: 410, y: 360},
     {x: 410, y: 340},
@@ -223,7 +323,7 @@ var notePolys = {
     {x: 425, y: 380},
     {x: 405, y: 380}
   ],
-  'C6': [
+  'C5': [
     {x: 425, y: 340},
     {x: 440, y: 340},
     {x: 440, y: 360},
@@ -231,13 +331,13 @@ var notePolys = {
     {x: 445, y: 380},
     {x: 425, y: 380}
   ],
-  'C#6': [
+  'C#5': [
     {x: 440, y: 340},
     {x: 450, y: 340},
     {x: 450, y: 360},
     {x: 440, y: 360}
   ],
-  'D6': [
+  'D5': [
     {x: 445, y: 360},
     {x: 450, y: 360},
     {x: 450, y: 340},
@@ -247,13 +347,13 @@ var notePolys = {
     {x: 465, y: 380},
     {x: 445, y: 380}
   ],
-  'D#6': [
+  'D#5': [
     {x: 460, y: 340},
     {x: 470, y: 340},
     {x: 470, y: 360},
     {x: 460, y: 360}
   ],
-  'E6': [
+  'E5': [
     {x: 465, y: 360},
     {x: 470, y: 360},
     {x: 470, y: 340},
@@ -261,22 +361,385 @@ var notePolys = {
     {x: 485, y: 380},
     {x: 465, y: 380}
   ],
-  'F6': [
+  'F5': [
     {x: 485, y: 340},
     {x: 500, y: 340},
     {x: 500, y: 380},
     {x: 485, y: 380}
   ]
 };
-notePolys['Db4'] = notePolys['C#4'];
-notePolys['Eb4'] = notePolys['D#4'];
-notePolys['Gb4'] = notePolys['F#4'];
-notePolys['Ab4'] = notePolys['G#4'];
-notePolys['Bb4'] = notePolys['A#4'];
-notePolys['Db5'] = notePolys['C#5'];
-notePolys['Eb5'] = notePolys['D#5'];
-notePolys['Gb5'] = notePolys['F#5'];
-notePolys['Ab5'] = notePolys['G#5'];
-notePolys['Bb5'] = notePolys['A#5'];
-notePolys['Db6'] = notePolys['C#6'];
-notePolys['Eb6'] = notePolys['D#6'];
+k1NotePolys['Db3'] = k1NotePolys['C#3'];
+k1NotePolys['Eb3'] = k1NotePolys['D#3'];
+k1NotePolys['Gb3'] = k1NotePolys['F#3'];
+k1NotePolys['Ab3'] = k1NotePolys['G#3'];
+k1NotePolys['Bb3'] = k1NotePolys['A#3'];
+k1NotePolys['Db4'] = k1NotePolys['C#4'];
+k1NotePolys['Eb4'] = k1NotePolys['D#4'];
+k1NotePolys['Gb4'] = k1NotePolys['F#4'];
+k1NotePolys['Ab4'] = k1NotePolys['G#4'];
+k1NotePolys['Bb4'] = k1NotePolys['A#4'];
+k1NotePolys['Db5'] = k1NotePolys['C#5'];
+k1NotePolys['Eb5'] = k1NotePolys['D#5'];
+
+k2NotePolys = {
+  'B1': [
+    {x: 60, y: 290},
+    {x: 70, y: 290},
+    {x: 70, y: 330},
+    {x: 60, y: 330}
+  ],
+  'C2': [
+    {x: 70, y: 290},
+    {x: 80, y: 290},
+    {x: 80, y: 310},
+    {x: 85, y: 310},
+    {x: 85, y: 330},
+    {x: 70, y: 330}
+  ],
+  'C#2': [
+    {x: 80, y: 290},
+    {x: 90, y: 290},
+    {x: 90, y: 310},
+    {x: 80, y: 310}
+  ],
+  'D2': [
+    {x: 85, y: 310},
+    {x: 90, y: 310},
+    {x: 90, y: 290},
+    {x: 100, y: 290},
+    {x: 100, y: 310},
+    {x: 105, y: 310},
+    {x: 105, y: 330},
+    {x: 85, y: 330}
+  ],
+  'D#2': [
+    {x: 100, y: 290},
+    {x: 110, y: 290},
+    {x: 110, y: 310},
+    {x: 100, y: 310}
+  ],
+  'E2': [
+    {x: 105, y: 310},
+    {x: 110, y: 310},
+    {x: 110, y: 290},
+    {x: 125, y: 290},
+    {x: 125, y: 330},
+    {x: 105, y: 330}
+  ],
+  'F2': [
+    {x: 125, y: 290},
+    {x: 140, y: 290},
+    {x: 140, y: 310},
+    {x: 145, y: 310},
+    {x: 145, y: 330},
+    {x: 125, y: 330}
+  ],
+  'F#2': [
+    {x: 140, y: 290},
+    {x: 150, y: 290},
+    {x: 150, y: 310},
+    {x: 140, y: 310}
+  ],
+  'G2': [
+    {x: 145, y: 310},
+    {x: 150, y: 310},
+    {x: 150, y: 290},
+    {x: 160, y: 290},
+    {x: 160, y: 310},
+    {x: 165, y: 310},
+    {x: 165, y: 330},
+    {x: 145, y: 330}
+  ],
+  'G#2': [
+    {x: 160, y: 290},
+    {x: 170, y: 290},
+    {x: 170, y: 310},
+    {x: 160, y: 310}
+  ],
+  'A2': [
+    {x: 165, y: 310},
+    {x: 170, y: 310},
+    {x: 170, y: 290},
+    {x: 180, y: 290},
+    {x: 180, y: 310},
+    {x: 185, y: 310},
+    {x: 185, y: 330},
+    {x: 165, y: 330}
+  ],
+  'A#2': [
+    {x: 180, y: 290},
+    {x: 190, y: 290},
+    {x: 190, y: 310},
+    {x: 180, y: 310}
+  ],
+  'B2': [
+    {x: 185, y: 310},
+    {x: 190, y: 310},
+    {x: 190, y: 290},
+    {x: 205, y: 290},
+    {x: 205, y: 330},
+    {x: 185, y: 330}
+  ],
+  'C3': [
+    {x: 205, y: 290},
+    {x: 220, y: 290},
+    {x: 220, y: 310},
+    {x: 225, y: 310},
+    {x: 225, y: 330},
+    {x: 205, y: 330}
+  ],
+  'C#3': [
+    {x: 220, y: 290},
+    {x: 230, y: 290},
+    {x: 230, y: 310},
+    {x: 220, y: 310}
+  ],
+  'D3': [
+    {x: 225, y: 310},
+    {x: 230, y: 310},
+    {x: 230, y: 290},
+    {x: 240, y: 290},
+    {x: 240, y: 310},
+    {x: 245, y: 310},
+    {x: 245, y: 330},
+    {x: 225, y: 330}
+  ],
+  'D#3': [
+    {x: 240, y: 290},
+    {x: 250, y: 290},
+    {x: 250, y: 310},
+    {x: 240, y: 310}
+  ],
+  'E3': [
+    {x: 245, y: 310},
+    {x: 250, y: 310},
+    {x: 250, y: 290},
+    {x: 265, y: 290},
+    {x: 265, y: 330},
+    {x: 245, y: 330}
+  ],
+  'F3': [
+    {x: 265, y: 290},
+    {x: 280, y: 290},
+    {x: 280, y: 310},
+    {x: 285, y: 310},
+    {x: 285, y: 330},
+    {x: 265, y: 330}
+  ],
+  'F#3': [
+    {x: 280, y: 290},
+    {x: 290, y: 290},
+    {x: 290, y: 310},
+    {x: 280, y: 310}
+  ],
+  'G3': [
+    {x: 285, y: 310},
+    {x: 290, y: 310},
+    {x: 290, y: 290},
+    {x: 300, y: 290},
+    {x: 300, y: 310},
+    {x: 305, y: 310},
+    {x: 305, y: 330},
+    {x: 285, y: 330}
+  ],
+  'G#3': [
+    {x: 300, y: 290},
+    {x: 310, y: 290},
+    {x: 310, y: 310},
+    {x: 300, y: 310}
+  ],
+  'A3': [
+    {x: 305, y: 310},
+    {x: 310, y: 310},
+    {x: 310, y: 290},
+    {x: 320, y: 290},
+    {x: 320, y: 310},
+    {x: 325, y: 310},
+    {x: 325, y: 330},
+    {x: 305, y: 330}
+  ],
+  'A#3': [
+    {x: 320, y: 290},
+    {x: 330, y: 290},
+    {x: 330, y: 310},
+    {x: 320, y: 310}
+  ],
+  'B3': [
+    {x: 325, y: 310},
+    {x: 330, y: 310},
+    {x: 330, y: 290},
+    {x: 345, y: 290},
+    {x: 345, y: 330},
+    {x: 325, y: 330}
+  ],
+  'C4': [
+    {x: 345, y: 290},
+    {x: 360, y: 290},
+    {x: 360, y: 310},
+    {x: 365, y: 310},
+    {x: 365, y: 330},
+    {x: 345, y: 330}
+  ],
+  'C#4': [
+    {x: 360, y: 290},
+    {x: 370, y: 290},
+    {x: 370, y: 310},
+    {x: 360, y: 310}
+  ],
+  'D4': [
+    {x: 365, y: 310},
+    {x: 370, y: 310},
+    {x: 370, y: 290},
+    {x: 380, y: 290},
+    {x: 380, y: 310},
+    {x: 385, y: 310},
+    {x: 385, y: 330},
+    {x: 365, y: 330}
+  ],
+  'D#4': [
+    {x: 380, y: 290},
+    {x: 390, y: 290},
+    {x: 390, y: 310},
+    {x: 380, y: 310}
+  ],
+  'E4': [
+    {x: 385, y: 310},
+    {x: 390, y: 310},
+    {x: 390, y: 290},
+    {x: 405, y: 290},
+    {x: 405, y: 330},
+    {x: 385, y: 330}
+  ],
+  'F4': [
+    {x: 405, y: 290},
+    {x: 420, y: 290},
+    {x: 420, y: 310},
+    {x: 425, y: 310},
+    {x: 425, y: 330},
+    {x: 405, y: 330}
+  ],
+  'F#4': [
+    {x: 420, y: 290},
+    {x: 430, y: 290},
+    {x: 430, y: 310},
+    {x: 420, y: 310}
+  ],
+  'G4': [
+    {x: 425, y: 310},
+    {x: 430, y: 310},
+    {x: 430, y: 290},
+    {x: 440, y: 290},
+    {x: 440, y: 310},
+    {x: 445, y: 310},
+    {x: 445, y: 330},
+    {x: 425, y: 330}
+  ],
+  'G#4': [
+    {x: 440, y: 290},
+    {x: 450, y: 290},
+    {x: 450, y: 310},
+    {x: 440, y: 310}
+  ],
+  'A4': [
+    {x: 445, y: 310},
+    {x: 450, y: 310},
+    {x: 450, y: 290},
+    {x: 460, y: 290},
+    {x: 460, y: 310},
+    {x: 465, y: 310},
+    {x: 465, y: 330},
+    {x: 445, y: 330}
+  ],
+  'A#4': [
+    {x: 460, y: 290},
+    {x: 470, y: 290},
+    {x: 470, y: 310},
+    {x: 460, y: 310}
+  ],
+  'B4': [
+    {x: 465, y: 310},
+    {x: 470, y: 310},
+    {x: 470, y: 290},
+    {x: 485, y: 290},
+    {x: 485, y: 330},
+    {x: 465, y: 330}
+  ],
+  'C5': [
+    {x: 485, y: 290},
+    {x: 500, y: 290},
+    {x: 500, y: 310},
+    {x: 505, y: 310},
+    {x: 505, y: 330},
+    {x: 485, y: 330}
+  ],
+  'C#5': [
+    {x: 500, y: 290},
+    {x: 510, y: 290},
+    {x: 510, y: 310},
+    {x: 500, y: 310}
+  ],
+  'D5': [
+    {x: 505, y: 310},
+    {x: 510, y: 310},
+    {x: 510, y: 290},
+    {x: 520, y: 290},
+    {x: 520, y: 310},
+    {x: 525, y: 310},
+    {x: 525, y: 330},
+    {x: 505, y: 330}
+  ],
+  'D#5': [
+    {x: 520, y: 290},
+    {x: 530, y: 290},
+    {x: 530, y: 310},
+    {x: 520, y: 310}
+  ],
+  'E5': [
+    {x: 525, y: 310},
+    {x: 530, y: 310},
+    {x: 530, y: 290},
+    {x: 545, y: 290},
+    {x: 545, y: 330},
+    {x: 525, y: 330}
+  ],
+  'F5': [
+    {x: 545, y: 290},
+    {x: 560, y: 290},
+    {x: 560, y: 310},
+    {x: 565, y: 310},
+    {x: 565, y: 330},
+    {x: 545, y: 330}
+  ],
+  'F#5': [
+    {x: 560, y: 290},
+    {x: 570, y: 290},
+    {x: 570, y: 310},
+    {x: 560, y: 310}
+  ],
+  'G5': [
+    {x: 565, y: 310},
+    {x: 570, y: 310},
+    {x: 570, y: 290},
+    {x: 580, y: 290},
+    {x: 580, y: 330},
+    {x: 565, y: 330}
+  ]
+};
+k2NotePolys['Db3'] = k2NotePolys['C#3'];
+k2NotePolys['Eb3'] = k2NotePolys['D#3'];
+k2NotePolys['Gb3'] = k2NotePolys['F#3'];
+k2NotePolys['Ab3'] = k2NotePolys['G#3'];
+k2NotePolys['Bb3'] = k2NotePolys['A#3'];
+k2NotePolys['Db4'] = k2NotePolys['C#4'];
+k2NotePolys['Eb4'] = k2NotePolys['D#4'];
+k2NotePolys['Gb4'] = k2NotePolys['F#4'];
+k2NotePolys['Ab4'] = k2NotePolys['G#4'];
+k2NotePolys['Bb4'] = k2NotePolys['A#4'];
+k2NotePolys['Db5'] = k2NotePolys['C#5'];
+k2NotePolys['Eb5'] = k2NotePolys['D#5'];
+k2NotePolys['Gb5'] = k2NotePolys['F#5'];
+k2NotePolys['Ab5'] = k2NotePolys['G#5'];
+k2NotePolys['Bb5'] = k2NotePolys['A#5'];
+k2NotePolys['Db6'] = k2NotePolys['C#6'];
+k2NotePolys['Eb6'] = k2NotePolys['D#6'];
+k2NotePolys['Gb6'] = k2NotePolys['F#6'];
